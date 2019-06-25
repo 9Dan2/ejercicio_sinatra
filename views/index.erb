@@ -1,0 +1,9 @@
+<h1>Este es el grupo </h1>
+<ul> 
+    <li>
+    <%@people.each_with_index do |person, index| %>
+        <%=person.nombre%>
+        <a href="/people/<%=index%>">ver</a>
+    <%end%>
+    </li>
+</ul>
