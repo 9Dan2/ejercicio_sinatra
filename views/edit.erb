@@ -1,0 +1,7 @@
+<form action="/people/<%=@id%>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="text" name="nombre" value="<%=@person.nombre%>">
+    <input type="text" name="apellido" value="<%=@person.apellido%>">
+    <input type="text" name="edad" value="<%=@person.edad%>">
+    <button type="submit">Actualizar</button>
+</form>

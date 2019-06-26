@@ -14,6 +14,9 @@ get '/people' do  #index
         @people = people
         erb :index
 end
+get '/people/new' do
+    erb :new
+end
 
 get '/people/:id' do
     #show
@@ -22,26 +25,33 @@ get '/people/:id' do
     erb :show
 end
 
-get '/people/new' do
-    #new
-end
+
 
 post '/people' do
-    #create
+    person = Person.new(params[:nombre],params[:apellido],params[:edad])
+    people << person
+    redirect "/people/#{people.length - 1}"
 end
 
 get '/people/:id/edit' do
-    #edit
+    @id = params[:id].to_i
+    @person = people[params[:id].to_i]
+    erb :edit
 end
 
-put '/people/' do
-    #update
+put '/people/:id' do
+    person = people[params[:id].to_i]
+    person.nombre = params[:nombre]
+    person.apellido = params[:apellido]
+    person.edad = params[:edad]
+    redirect "/people/#{params[:id]}"
 end
 
 patch '/people/' do
     #update
 end
 
-delete '/people/' do
-    #destroy
+delete '/people/:id' do
+    people.delete_at(params[:id].to_i)
+    redirect "/people"
 end
